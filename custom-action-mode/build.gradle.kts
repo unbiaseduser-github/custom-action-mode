@@ -11,6 +11,7 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
+            withJavadocJar()
         }
     }
 
@@ -53,7 +54,7 @@ afterEvaluate {
 
                 pom {
                     name.set("custom-action-mode")
-                    description.set("Toolbar wrapper that simulates the vanilla ActionMode")
+                    description.set("Toolbar wrapper that functionally simulates the vanilla ActionMode with a different API, for better or worse.")
 
                     licenses {
                         license {
@@ -67,8 +68,14 @@ afterEvaluate {
                             id.set("unbiaseduser")
                             name.set("Dang Quang Trung")
                             email.set("quangtrung02hn16@gmail.com")
-                            url.set("https://github.com/unbiaseduser")
+                            url.set("https://github.com/unbiaseduser-github")
                         }
+                    }
+
+                    scm {
+                        connection.set("scm:git:git://github.com/unbiaseduser-github/custom-action-mode.git")
+                        developerConnection.set("scm:git:ssh://github.com:unbiaseduser-github/custom-action-mode.git")
+                        url.set("https://github.com/unbiaseduser-github/tree/master")
                     }
                 }
             }
