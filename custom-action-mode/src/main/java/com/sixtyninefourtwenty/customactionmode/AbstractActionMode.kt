@@ -83,6 +83,7 @@ abstract class AbstractActionMode(private val toolbar: Toolbar,
         initMenu?.accept(toolbar.menu, SupportMenuInflater(toolbar.context))
         show(toolbar)
         callback.onActionModeStarted(this)
+        callback.onPrepareActionMode(this, toolbar.menu)
     }
 
     fun start(callback: Callback, @MenuRes menuRes: Int) = start(callback) { menu, menuInflater ->
@@ -103,6 +104,10 @@ abstract class AbstractActionMode(private val toolbar: Toolbar,
         callback.onActionModeFinished(this)
     }
 
+    fun invalidate() {
+        callback?.onPrepareActionMode(this, toolbar.menu)
+    }
+
     init {
         with(toolbar) {
             visibility = View.GONE
@@ -117,6 +122,7 @@ abstract class AbstractActionMode(private val toolbar: Toolbar,
         fun onActionModeStarted(mode: AbstractActionMode) = Unit
         fun onMenuItemClicked(mode: AbstractActionMode, item: MenuItem): Boolean
         fun onActionModeFinished(mode: AbstractActionMode) = Unit
+        fun onPrepareActionMode(mode: AbstractActionMode, menu: Menu) = Unit
     }
 
 }
